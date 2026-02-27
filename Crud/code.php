@@ -7,9 +7,10 @@ if (isset($_POST['checking_add'])) {
     $lname = $_POST['lname'];
     $class = $_POST['class'];
     $section = $_POST['section'];
+    $status = $_POST['status'];
 
-    $query = "INSERT INTO students (fname,lname,class,section)
-              VALUES ('$fname','$lname','$class','$section')";
+    $query = "INSERT INTO students  (fname,lname,class,section,status)
+              VALUES  ('$fname','$lname','$class','$section','$status')";
 
     if (mysqli_query($conn, $query)) {
         echo "Successfully added";
@@ -18,6 +19,18 @@ if (isset($_POST['checking_add'])) {
     }
     exit;
 }
+if (isset($_POST['status_update'])) {
+    $id = $_POST['stu_id'];
+    $status = $_POST['status']; // active / inactive
+
+    $query = "UPDATE students SET status='$status' WHERE id='$id'";
+    mysqli_query($conn, $query);
+
+    echo "success";
+    exit;
+}
+
+
 
 /// VIEW ///
 if (isset($_POST['checking_view'])) {
@@ -25,17 +38,16 @@ if (isset($_POST['checking_view'])) {
 
     $query = "SELECT * FROM students WHERE id='$stu_id'";
     $query_run = mysqli_query($conn, $query);
-    $result_array = [];
 
     if (mysqli_num_rows($query_run) > 0) {
-        foreach ($query_run as $row) {
-            $result_array[] = $row;
-        }
+        $row = mysqli_fetch_assoc($query_run);
         header("Content-type: application/json");
-        echo json_encode($result_array);
+        echo json_encode($row);
     }
     exit;
 }
+
+
 
 /// EDIT ///
 if (isset($_POST['checking_edit'])) {
@@ -43,14 +55,11 @@ if (isset($_POST['checking_edit'])) {
 
     $query = "SELECT * FROM students WHERE id='$stu_id'";
     $query_run = mysqli_query($conn, $query);
-    $result_array = [];
 
     if (mysqli_num_rows($query_run) > 0) {
-        foreach ($query_run as $row) {
-            $result_array[] = $row;
-        }
+        $row = mysqli_fetch_assoc($query_run);
         header("Content-type: application/json");
-        echo json_encode($result_array);
+        echo json_encode($row);
     }
     exit;
 }
@@ -62,8 +71,9 @@ if (isset($_POST['checking_update'])) {
     $lname = $_POST['lname'];
     $class = $_POST['class'];
     $section = $_POST['section'];
+    $status = $_POST['status'];
 
-    $query = "UPDATE students SET fname='$fname', lname='$lname', class='$class', section='$section' WHERE id='$id'";
+    $query = "UPDATE students SET fname='$fname', lname='$lname', class='$class', section='$section', status='$status' WHERE id='$id'";
     $query_run = mysqli_query($conn, $query);
     if ($query_run) {
         echo $return = "Successfully Update";
@@ -81,6 +91,5 @@ if (isset($_POST['checking_delete'])) {
     if ($query_run) {
         echo $return = "Successfully Deleted";
     }
-} else {
-    echo $return = "Something went wrong";
 }
+exit;

@@ -1,0 +1,258 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+/* ===== Variables ===== */
+:root {
+  --sidebar-width: 260px;
+  --sidebar-close-width: 80px;
+
+  --primary-color: #695cfe;
+
+  --body-color: #f4f6fb;
+  --sidebar-color: #ffd;
+
+  --text-color: #555;
+  --text-white: #ffffff;
+
+  --hover-color: #695cfe;
+
+  --transition: 0.3s ease;
+}
+body.dark {
+  --body-color: #111111;
+  --sidebar-color: #ffd; /* yaha bhi change karo */
+}
+/* ===== Body ===== */
+body {
+  min-height: 100vh;
+  background: var(--body-color);
+  transition: var(--transition);
+}
+
+/* ===== Sidebar ===== */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: var(--sidebar-width);
+  background: var(--sidebar-color);
+  padding: 20px 15px;
+  transition: var(--transition);
+  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.08);
+  z-index: 100;
+  overflow-y: auto;
+  border-right: 1px solid #e0e0e0;
+}
+
+body.dark .sidebar {
+  box-shadow: 4px 0 25px rgba(105, 92, 254, 0.2);
+  border-right: 1px solid #333;
+}
+
+.sidebar.close {
+  width: var(--sidebar-close-width);
+}
+
+/* ===== Header ===== */
+.sidebar header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.image-text {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.image-text img {
+  width: 50px;
+  border-radius: 6px;
+}
+
+.header-text {
+  display: flex;
+  flex-direction: column;
+  transition: var(--transition);
+}
+
+.sidebar.close .header-text {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ===== Toggle ===== */
+.sidebar header .toggle {
+  position: absolute;
+  top: 50%;
+  right: -20px;
+  transform: translateY(-50%);
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+  background: var(--primary-color);
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: var(--transition);
+}
+
+.sidebar.close .toggle {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+/* ===== Menu ===== */
+.menu-bar {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 90px);
+  overflow-y: auto;
+  padding-right: 5px;
+}
+
+.menu-bar li {
+  list-style: none;
+  margin-top: 8px;
+}
+
+/* ===== Links ===== */
+li a {
+  display: flex;
+  align-items: center;
+  height: 50px;
+  text-decoration: none;
+  color: var(--text-color);
+  border-radius: 8px;
+  padding: 0 15px;
+  transition: var(--transition);
+  position: relative;
+  font-weight: 500;
+  overflow: hidden;
+}
+
+/* Hover + Active */
+li a:hover,
+li a.active {
+  background: var(--hover-color);
+  color: var(--text-white);
+}
+
+li a.active::before {
+  width: 100%;
+}
+
+/* Hover Animation */
+li a::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 0;
+  background: var(--hover-color);
+  z-index: -1;
+  transition: var(--transition);
+}
+
+/* Icon */
+.icon {
+  min-width: 50px;
+  text-align: center;
+  font-size: 20px;
+}
+
+/* Force white text in dark mode */
+body.dark .sidebar .text,
+body.dark .sidebar .icon {
+  color: var(--text-color);
+}
+
+/* ===== Search ===== */
+.search-box {
+  background: #f0efff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.search-box input {
+  border: none;
+  outline: none;
+  background: transparent;
+  width: 100%;
+  padding: 8px 10px;
+  color: var(--text-color);
+}
+
+body.dark .search-box {
+  background: #2c2c2c;
+}
+
+body.dark .search-box input {
+  color: #ffffff;
+}
+
+/* ===== Hide Text ===== */
+.sidebar .text {
+  white-space: nowrap;
+  transition: var(--transition);
+}
+
+.sidebar.close .text {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ===== Main Content ===== */
+/* ===== Main Content ===== */
+.home {
+  margin-left: var(--sidebar-width);
+  padding: 30px;
+  transition:
+    margin-left 0.3s ease,
+    padding 0.3s ease;
+}
+
+/* Sidebar close ke baad */
+.sidebar.close ~ .home {
+  margin-left: var(--sidebar-close-width);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .sidebar {
+    left: -260px;
+  }
+
+  .sidebar.show {
+    left: 0;
+  }
+
+  .home {
+    margin-left: 0;
+    padding: 20px;
+  }
+}
+
+/* Table responsive for small sidebar */
+@media (min-width: 769px) {
+  .home {
+    transition:
+      margin-left 0.3s ease,
+      padding 0.3s ease;
+  }
+}
