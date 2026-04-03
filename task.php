@@ -3,7 +3,7 @@ $conn = mysqli_connect("localhost", "root", "", "phpcrud");
 $sql = "select * from students limit 5";
 $result = mysqli_query($conn, $sql);
 $finalData = array();
-while ($data = mysqli_fetch_assoc($result)) {
+while ($data = mysqli_fetch_array($result)) {
     $finalData[] = $data;
 }
 ?>
@@ -34,10 +34,10 @@ while ($data = mysqli_fetch_assoc($result)) {
             <?php
             foreach ($finalData as $data) { ?>
                 <tr>
-                    <th><?php echo $data['fname'] ?></th>
+                    <th><?php echo $data[1] ?></th>
                     <th><?php echo $data['lname'] ?></th>
-                    <th><?php echo $data['class'] ?></th>
-                    <th><?php echo $data['section'] ?></th>
+                    <th><?php echo $data[3] ?></th>
+                    <th><?php echo $data[4] ?></th>
                     <th><?php echo $data['status'] ?></th>
 
                 </tr>

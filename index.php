@@ -90,39 +90,10 @@
                     </div>
                 </div>
             </div>
-            <div class="row my-4">
 
-    <div class="col-md-4">
-        <div class="card shadow border-0">
-            <div class="card-body text-center">
-                <h5>Total Teachers</h5>
-                <h2 class="text-primary totalCount">0</h2>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-4">
-        <div class="card shadow border-0">
-            <div class="card-body text-center">
-                <h5>Active Teachers</h5>
-                <h2 class="text-success activeCount">0</h2>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-4">
-        <div class="card shadow border-0">
-            <div class="card-body text-center">
-                <h5>Inactive Teachers</h5>
-                <h2 class="text-danger inactiveCount">0</h2>
-            </div>
-        </div>
-    </div>
-
-</div>
             <?php include __DIR__ . "/sidebar/teacher/add_teacher.php"; ?>
             <?php include __DIR__ . "/sidebar/teacher/view_teacher.php"; ?>
-            <?php include __DIR__ . "/sidebar/teacher/edit_teacher.php"; ?>
+
 
         <?php } else { ?>
 
@@ -137,11 +108,19 @@
                     </div>
                     <div class="card-body">
                         <div class="row mb-3 align-items-center">
-                            <div class="col-md-7">
+                            <div class="col-md-5">
                                 <div class="input-group">
                                     <span class="input-group-text"><i class="bi bi-search"></i></span>
                                     <input type="text" id="search_input" class="form-control" placeholder="Search here...">
                                 </div>
+                            </div>
+                            <div class="col-md-2">
+                                <button type="button" class="btn btn-success fs-5 btn-sm " id="export_btn" name="export">
+                                    Export Excel
+                                </button>
+                                <form method="post">
+                                    <span class="input-group-text"></span><input type="submit" class="btn btn-success" name="export" value="Export to Excel">
+                                </form>
                             </div>
                             <div class="col-md-3">
                                 <select id="status_filter" class="form-select">
