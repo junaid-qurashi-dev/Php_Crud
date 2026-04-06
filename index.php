@@ -115,11 +115,8 @@
                                 </div>
                             </div>
                             <div class="col-md-2">
-                                <button type="button" class="btn btn-success fs-5 btn-sm " id="export_btn" name="export">
-                                    Export Excel
-                                </button>
-                                <form method="post">
-                                    <span class="input-group-text"></span><input type="submit" class="btn btn-success" name="export" value="Export to Excel">
+                                <form method="post" action="crud/export.php">
+                                    <input type="submit" class="btn btn-success" name="export" value="Export to Excel">
                                 </form>
                             </div>
                             <div class="col-md-3">

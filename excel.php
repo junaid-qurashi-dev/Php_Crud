@@ -12,14 +12,21 @@ if (isset($_POST['export'])) {
     header("Content-Type:application/vnd.ms-excel");
     header("Content-Disposition: attachment; filename=\"$filename\"");
     $firstrow = false;
+    $customHeader = [
+        "id" => "ID",
+        "fname" => "First Name",
+        "lname" => "Last Name",
+        "class" => "Class",
+        "section" => "Section",
+        "status" => "Status",
+    ];
     foreach ($finalData as $data) {
         if (!$firstrow) {
-            echo implode("\t", array_keys($data)) . "\n";
+            echo implode("\t", $customHeader) . "\n";
             $firstrow = true;
         }
         echo implode("\t", array_values($data)) . "\n";
     }
-
     exit;
 }
 ?>

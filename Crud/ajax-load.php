@@ -21,7 +21,7 @@ if ($search != '') {
     $where[] = "CONCAT(id,fname,lname,class,section,status) LIKE '%$search%'";
 }
 if ($status != '') {
-    $where[] = "status = '$status'"; 
+    $where[] = "status = '$status'";
 }
 
 $where_sql = "";
