@@ -1,3 +1,15 @@
+<?php
+session_start();
+require 'vendor/autoload.php';
+
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+
+if (!isset($_SESSION['user'])) {
+    header("Location: Validation/login.php");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -116,7 +128,9 @@
                             </div>
                             <div class="col-md-2">
                                 <form method="post" action="crud/export.php">
-                                    <input type="submit" class="btn btn-success" name="export" value="Export to Excel">
+                                    <button type="submit" class="btn btn-success" name="export">
+                                        <i class="bi bi-download"></i> Export
+                                    </button>
                                 </form>
                             </div>
                             <div class="col-md-3">
@@ -127,7 +141,7 @@
                                 </select>
                             </div>
                             <div class="col-md-2">
-                                <button class="btn btn-success w-100" id="search_btn">
+                                <button class="btn btn-primary w-100" id="search_btn">
                                     <i class="bi bi-search"></i> Search
                                 </button>
                             </div>

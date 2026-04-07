@@ -43,8 +43,8 @@
 
 <!-- ADD STUDENT AJAX -->
 <script>
-    $(document).ready(function () {
-        $('.student_add').click(function (e) {
+    $(document).ready(function() {
+        $('.student_add').click(function(e) {
             e.preventDefault();
 
             var fname = $('.fname').val();
@@ -65,7 +65,7 @@
                         section: section,
                         status: status
                     },
-                    success: function (response) {
+                    success: function(response) {
                         // hide modal
 
                         let res = response
@@ -91,7 +91,7 @@
 
 
                     },
-                    error: function (xhr, status, error) {
+                    error: function(xhr, status, error) {
                         Swal.fire({
                             icon: 'error',
                             title: 'Oops...',
@@ -107,6 +107,9 @@
                     text: 'Please fill all fields!',
                 });
             }
+        });
+        $('#export').click(function() {
+            window.location.href = "/Ajax/Crud/export.php";
         });
     });
 </script>

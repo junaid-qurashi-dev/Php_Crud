@@ -207,9 +207,9 @@
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">
+      <a class="nav-link" href="/Ajax/Validation/login.php">
         <i class="bi bi-award-fill"></i>
-        <span class="link-text">Results</span>
+        <span class="link-text">Logout</span>
       </a>
     </li>
   </ul>
@@ -238,5 +238,4 @@
       toggleIcon.classList.add("bi-arrow-left-circle");
     }
   });
-
 </script>
